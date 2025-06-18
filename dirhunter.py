@@ -38,6 +38,7 @@ time.sleep(2)
 base_url = console.input("[yellow][!] ENTER URL : ").rstrip("/")
 
 console.print("[yellow][!] Some websites require headers (like cookies or user-agents).")
+console.print("[yellow][!] Some websites can respond to the request by success but its not really valid directory... working on fixing it as soon as possible")
 console.print("[yellow][!] Starting after [blue]5 SECONDS[/blue] without headers...")
 time.sleep(5)
 
