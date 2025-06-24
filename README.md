@@ -57,7 +57,7 @@ pip install httpx rich click
 ### 📦 Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/dirhunter.git
+git clone https://github.com/m0n3ef/dirhunter.git
 cd dirhunter
 ```
 
