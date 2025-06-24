@@ -78,7 +78,7 @@ python dirhunter.py -t https://example.com/
 | `-o`        | Save hits to `output.txt` (set to `True`)                                   |
 | `-tm`       | Set HTTP timeout (in seconds). Default is `10`                              |
 | `-c`        | Show status codes (200, 403, etc.)                                          |
-| `-w`        | Use a custom wordlist (wordlist.txt                                         |
+| `-w`        | Use a custom wordlist (wordlist.txt)                                        |
 
 ### 🔍 Example
 
