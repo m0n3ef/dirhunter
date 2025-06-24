@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
 from rich.live import Live
 import time
-#import os
+import os
 import click
 
 console = Console()
@@ -14,8 +14,10 @@ console = Console()
 @click.option('-o', help='Use this option to save the hits on the output file\n the file will be generate by a random name', required=False, type=bool)
 @click.option('-tm', help='Use this option to choose the timeout in seconds\n default is 10', required=False, type=int, default='10')
 @click.option('-c', help='Use this option to show the response codes', required=False, type=bool, default=False)
-@click.option('-ext', help='Use this option to add extension format to the path word\n example: -ext .php ----> index.php / image.php', required=False, type=str)
-def hunting(t, words, o, tm, c, ext):
+@click.option('-ext', help='Use this option to add extension format to the path word\n example: -ext .php ----> index.php / image.php', required=False, type=str, default='')
+@click.option('-w', help='Use this option to use your own wordlist\n example: -w wordlist.txt', required=False, type=str)
+
+def hunting(t, words, o, tm, c, ext, w):
     console.print('''[green]
 
                 ⠀⠀⠀⠲⣦⣤⣀⣀⠀⠀⠀⣀⣀⣠⣤⣀⣀⠀⢀⣀⣠⣤⣶⣶⠟⠀⠀⠀ DIRHUNTER v1.0.1
@@ -33,8 +35,16 @@ def hunting(t, words, o, tm, c, ext):
 
 [/green]''')
     time.sleep(2)
-    with open("dlistlowercasesmall.txt", "r") as f:
-        words = [line.strip() for line in f if line.strip()]
+    if w:
+        try:
+            with open(f"{w}", "r") as f:
+                words = [line.strip() for line in f if line.strip()]
+        except Exception as er:
+            console.print(f"[red][x] Error:[/red] {er}")
+            exit()
+    else:
+        with open("dlistlowercasesmall.txt", "r") as f:
+            words = [line.strip() for line in f if line.strip()]
 
 
     customheaders = {
