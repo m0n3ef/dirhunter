@@ -79,6 +79,7 @@ python dirhunter.py -t https://example.com/
 | `-tm`       | Set HTTP timeout (in seconds). Default is `10`                              |
 | `-c`        | Show status codes (200, 403, etc.)                                          |
 | `-w`        | Use a custom wordlist (wordlist.txt)                                        |
+| `-sub`      | sub-domain scanning and hunting                                             |
 
 ### 🔍 Example
 
