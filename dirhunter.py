@@ -6,6 +6,7 @@ from rich.live import Live
 import time
 import os
 import click
+from urllib.parse import urlparse
 
 console = Console()
 @click.command()
@@ -16,8 +17,12 @@ console = Console()
 @click.option('-c', help='Use this option to show the response codes', required=False, type=bool, default=False)
 @click.option('-ext', help='Use this option to add extension format to the path word\n example: -ext .php ----> index.php / image.php', required=False, type=str, default='')
 @click.option('-w', help='Use this option to use your own wordlist\n example: -w wordlist.txt', required=False, type=str)
+@click.option('-sub', help='Use this option to scan for sub-domains', required=False, type=bool, default=False)
 
-def hunting(t, words, o, tm, c, ext, w):
+
+    
+
+def hunting(t, words, o, tm, c, ext, w, sub):
     console.print('''[green]
 
                 ⠀⠀⠀⠲⣦⣤⣀⣀⠀⠀⠀⣀⣀⣠⣤⣀⣀⠀⢀⣀⣠⣤⣶⣶⠟⠀⠀⠀ DIRHUNTER v1.0.1
@@ -67,6 +72,13 @@ def hunting(t, words, o, tm, c, ext, w):
                     else:
                         full_url = f"{t}{word}"
                     try:
+                        if sub:
+                            full_url = f"{t}{word}"
+                            parsed = urlparse(full_url)
+                            domain = parsed.netloc
+                            full_url = f"{parsed.scheme}://{word}.{domain}"
+                        else:
+                            pass
                         response = client.get(full_url)
                         if response.status_code == 200:
                             if c:
